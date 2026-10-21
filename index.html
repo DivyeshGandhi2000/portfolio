@@ -1,0 +1,1337 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset=utf8>
+  <meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <style>
+    :root {
+      color-scheme: light;
+      box-sizing: border-box;
+      padding-top: env(safe-area-inset-top, 0px);
+      padding-bottom: env(safe-area-inset-bottom, 0px)
+    }
+
+    html {
+      scroll-padding-top: env(safe-area-inset-top, 0px)
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font: 14px -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #fff;
+      color: #000
+    }
+
+    img {
+      max-width: 100%
+    }
+
+    [hidden]:not([hidden=until-found i]) {
+      display: none !important
+    }
+  </style>
+</head>
+
+<body>
+  <title>Divyesh Jain Portfolio</title>
+  <meta name="claude:viewport-fit-sides" content="cover">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Material+Symbols+Outlined:wght@300..500&display=swap">
+  <style>
+    /* Layout: dark-first. Sticky slim nav, left-aligned hero with a pipeline illustration and a "working on now" panel; sections are a label column + content column; technologies shown as icon tiles. */
+    :root {
+      --bg: #0c110e;
+      --surface: #141b16;
+      --fg: #e9f1ec;
+      --muted: #93a79b;
+      --rule: #25302a;
+      --accent: #4ade80;
+      --accent-ink: #4ade80;
+      --accent-fg: #052e16;
+      --accent-soft: #14301f;
+      --font-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+      --font-body: "Instrument Sans", "Segoe UI", system-ui, sans-serif;
+      --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+      color-scheme: dark;
+    }
+
+    @media (prefers-color-scheme: light) {
+      :root:not([data-theme="dark"]) {
+        --bg: #f1f5f2;
+        --surface: #e2ebe5;
+        --fg: #0d1410;
+        --muted: #4f6157;
+        --rule: #c6d3ca;
+        --accent-ink: #166534;
+        --accent-soft: #d6f3e1;
+        color-scheme: light;
+      }
+    }
+
+    :root[data-theme="light"] {
+      --bg: #f1f5f2;
+      --surface: #e2ebe5;
+      --fg: #0d1410;
+      --muted: #4f6157;
+      --rule: #c6d3ca;
+      --accent-ink: #166534;
+      --accent-soft: #d6f3e1;
+      color-scheme: light;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 72px;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: var(--font-body);
+      font-size: 17px;
+      line-height: 1.6;
+      padding-left: max(16px, env(safe-area-inset-left, 0px));
+      padding-right: max(16px, env(safe-area-inset-right, 0px));
+      padding-block: 0 48px;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0 0 auto;
+      height: env(safe-area-inset-top, 0px);
+      z-index: 10;
+      background: var(--bg);
+    }
+
+    a {
+      color: inherit;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: 2px;
+    }
+
+    .wrap {
+      max-width: 1040px;
+      margin: 0 auto;
+    }
+
+    /* icons (Material Symbols). Width clips the ligature text if the font is slow to load. */
+    .ms {
+      font-family: "Material Symbols Outlined";
+      font-weight: 400;
+      font-style: normal;
+      font-size: 22px;
+      line-height: 1;
+      display: inline-block;
+      width: 1em;
+      height: 1em;
+      overflow: hidden;
+      white-space: nowrap;
+      letter-spacing: normal;
+      text-transform: none;
+      flex: none;
+      font-feature-settings: "liga";
+      -webkit-font-feature-settings: "liga";
+      vertical-align: middle;
+    }
+
+    .ico {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      flex: none;
+      background: var(--accent-soft);
+      color: var(--accent-ink);
+      border-radius: 12px;
+    }
+
+    .ico .ms {
+      font-size: 26px;
+    }
+
+    /* nav */
+    .nav {
+      position: sticky;
+      top: env(safe-area-inset-top, 0px);
+      z-index: 9;
+      background: var(--bg);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .nav .wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding-block: 14px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 18px;
+      text-decoration: none;
+      letter-spacing: -0.01em;
+    }
+
+    .mark {
+      width: 30px;
+      height: 30px;
+      display: grid;
+      place-items: center;
+      background: var(--accent);
+      color: var(--accent-fg);
+      border-radius: 8px;
+      font: 700 14px var(--font-display);
+      letter-spacing: -0.02em;
+    }
+
+    .nav ul {
+      display: flex;
+      gap: 22px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      font-size: 15px;
+    }
+
+    .nav ul a {
+      text-decoration: none;
+      color: var(--muted);
+    }
+
+    .nav ul a:hover {
+      color: var(--accent-ink);
+    }
+
+    .theme-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font: 500 13px var(--font-mono);
+      color: var(--fg);
+      background: transparent;
+      border: 1px solid var(--rule);
+      padding: 6px 10px;
+      cursor: pointer;
+      border-radius: 8px;
+    }
+
+    .theme-btn .ms {
+      font-size: 18px;
+    }
+
+    .theme-btn:hover {
+      border-color: var(--accent);
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+    }
+
+    @media (max-width: 720px) {
+      .nav ul {
+        display: none;
+      }
+    }
+
+    /* hero */
+    .hero {
+      padding-block: 72px 72px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 320px;
+      gap: 40px 56px;
+      align-items: center;
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+        padding-block: 48px 52px;
+      }
+    }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font: 500 13px var(--font-mono);
+      color: var(--muted);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex: none;
+      box-shadow: 0 0 0 4px var(--accent-soft);
+    }
+
+    h1 {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(42px, 7.2vw, 88px);
+      line-height: 0.99;
+      letter-spacing: -0.035em;
+      margin: 22px 0 0;
+      text-wrap: balance;
+    }
+
+    h1 em {
+      font-style: normal;
+      color: var(--accent-ink);
+    }
+
+    .lede {
+      max-width: 56ch;
+      font-size: clamp(18px, 2.2vw, 20px);
+      color: var(--muted);
+      margin: 26px 0 0;
+    }
+
+    .cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 34px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 20px;
+      font-weight: 600;
+      font-size: 15px;
+      text-decoration: none;
+      border: 1px solid var(--rule);
+      border-radius: 10px;
+    }
+
+    .btn .ms {
+      font-size: 20px;
+    }
+
+    .btn.primary {
+      background: var(--accent);
+      color: var(--accent-fg);
+      border-color: var(--accent);
+    }
+
+    .btn.primary:hover {
+      filter: brightness(1.06);
+    }
+
+    .btn.ghost:hover {
+      border-color: var(--accent);
+      color: var(--accent-ink);
+    }
+
+    .side {
+      display: grid;
+      gap: 16px;
+      min-width: 0;
+    }
+
+    .art {
+      background: var(--surface);
+      border-radius: 16px;
+      padding: 18px 14px 12px;
+    }
+
+    .art svg {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .art .flow {
+      stroke-dasharray: 4 5;
+      animation: flow 1s linear infinite;
+    }
+
+    @keyframes flow {
+      to {
+        stroke-dashoffset: -9;
+      }
+    }
+
+    .now {
+      background: var(--surface);
+      padding: 20px 22px;
+      border-radius: 16px;
+    }
+
+    .now h2 {
+      margin: 0 0 14px;
+    }
+
+    .now ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 14px;
+    }
+
+    .now li {
+      display: grid;
+      gap: 2px;
+      font-size: 15px;
+      line-height: 1.45;
+    }
+
+    .now li b {
+      font-weight: 600;
+    }
+
+    .now li span {
+      color: var(--muted);
+    }
+
+    /* sections */
+    section {
+      border-top: 1px solid var(--rule);
+      padding-block: 56px;
+    }
+
+    .sec {
+      display: grid;
+      grid-template-columns: 200px minmax(0, 1fr);
+      gap: 24px 48px;
+    }
+
+    @media (max-width: 760px) {
+      .sec {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    h2 {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font: 500 13px var(--font-mono);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 6px 0 0;
+    }
+
+    h2 .ms {
+      font-size: 20px;
+      color: var(--accent-ink);
+    }
+
+    .about p {
+      margin: 0 0 18px;
+      max-width: 62ch;
+    }
+
+    .about p:first-child {
+      font-size: 22px;
+      line-height: 1.45;
+      font-family: var(--font-display);
+      font-weight: 500;
+      letter-spacing: -0.01em;
+    }
+
+    .facts {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 14px;
+      margin: 28px 0 0;
+    }
+
+    .facts>div {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: var(--surface);
+      padding: 14px;
+      border-radius: 14px;
+    }
+
+    .facts .ico {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+    }
+
+    .facts .ico .ms {
+      font-size: 22px;
+    }
+
+    .facts dt {
+      font: 400 12px var(--font-mono);
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .facts dd {
+      margin: 0;
+      font-weight: 600;
+      line-height: 1.3;
+    }
+
+    /* experience */
+    .job-head {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 6px 24px;
+      align-items: baseline;
+    }
+
+    .job-head h3 {
+      font-family: var(--font-display);
+      font-size: clamp(24px, 3.4vw, 32px);
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin: 0;
+    }
+
+    .when {
+      font: 400 13px var(--font-mono);
+      color: var(--muted);
+    }
+
+    .org {
+      color: var(--accent-ink);
+    }
+
+    .role {
+      margin: 4px 0 0;
+      color: var(--muted);
+    }
+
+    .hl-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 14px;
+      margin-top: 24px;
+    }
+
+    .hl {
+      background: var(--surface);
+      border-radius: 14px;
+      padding: 18px;
+      display: grid;
+      gap: 12px;
+      align-content: start;
+    }
+
+    .hl h4 {
+      margin: 0;
+      font-size: 16px;
+    }
+
+    .hl p {
+      margin: 4px 0 0;
+      font-size: 14.5px;
+      line-height: 1.5;
+      color: var(--muted);
+    }
+
+    .bullets {
+      margin: 26px 0 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 12px;
+      max-width: 70ch;
+    }
+
+    .bullets li {
+      position: relative;
+      padding-left: 22px;
+    }
+
+    .bullets li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.72em;
+      width: 10px;
+      height: 2px;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+
+    /* technology tiles */
+    .skills {
+      display: grid;
+      gap: 28px;
+    }
+
+    .group h3 {
+      font: 500 13px var(--font-mono);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 0 0 12px;
+    }
+
+    .tiles {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(168px, 1fr));
+      gap: 10px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .tiles li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--surface);
+      padding: 10px 14px 10px 10px;
+      border-radius: 12px;
+      font-weight: 500;
+      font-size: 15px;
+      line-height: 1.25;
+      min-width: 0;
+      border: 1px solid transparent;
+      transition: border-color .2s, transform .2s;
+    }
+
+    .tiles li:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .tiles .ico {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+    }
+
+    .tiles .ico .ms {
+      font-size: 22px;
+    }
+
+    /* projects */
+    .projects {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .project {
+      border-bottom: 1px solid var(--rule);
+      padding: 26px 0;
+      display: grid;
+      grid-template-columns: 76px minmax(0, 1fr);
+      gap: 6px 20px;
+    }
+
+
+
+    .project .lead {
+      display: grid;
+      gap: 8px;
+      justify-items: start;
+      align-content: start;
+    }
+
+    .project h3 {
+      font-family: var(--font-display);
+      font-size: clamp(22px, 3vw, 28px);
+      letter-spacing: -0.02em;
+      margin: 0;
+      line-height: 1.15;
+    }
+
+    .project p {
+      margin: 8px 0 12px;
+      color: var(--muted);
+      max-width: 60ch;
+    }
+
+    .kind {
+      font: 400 12px var(--font-mono);
+      color: var(--muted);
+    }
+
+    .pill {
+      display: inline-block;
+      font: 500 11px var(--font-mono);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      margin-left: 10px;
+      vertical-align: middle;
+      background: var(--accent-soft);
+      color: var(--accent-ink);
+      border-radius: 6px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .tags li {
+      font: 400 13.5px var(--font-mono);
+      padding: 4px 10px;
+      background: var(--surface);
+      border-radius: 8px;
+    }
+
+    .tags.accent li {
+      background: var(--accent-soft);
+      color: var(--accent-ink);
+    }
+
+    .project.feature .bullets {
+      margin: 14px 0 16px;
+      gap: 8px;
+      font-size: 16px;
+      color: var(--muted);
+    }
+
+    /* education */
+    .edu {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 26px;
+    }
+
+    .edu li {
+      display: grid;
+      grid-template-columns: 120px minmax(0, 1fr);
+      gap: 4px 24px;
+    }
+
+    @media (max-width: 560px) {
+      .edu li {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .edu h3 {
+      font-size: 18px;
+      margin: 0;
+    }
+
+    .edu p {
+      margin: 4px 0 0;
+      color: var(--muted);
+    }
+
+    .edu .score {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      color: var(--accent-ink);
+    }
+
+    .cert {
+      margin-top: 34px;
+      padding: 18px;
+      background: var(--surface);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .cert h3 {
+      font-size: 18px;
+      margin: 0;
+    }
+
+    .cert p {
+      margin: 2px 0 0;
+      color: var(--muted);
+    }
+
+    /* contact */
+    .contact h3 {
+      font-family: var(--font-display);
+      font-size: clamp(30px, 5vw, 52px);
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      margin: 0 0 24px;
+      text-wrap: balance;
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .mail-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .mail {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font: 500 16px var(--font-mono);
+      padding: 8px 16px 8px 8px;
+      background: var(--surface);
+      border-radius: 12px;
+      min-width: 0;
+    }
+
+    .mail .ico {
+      width: 36px;
+      height: 36px;
+      border-radius: 9px;
+    }
+
+    .mail .ico .ms {
+      font-size: 20px;
+    }
+
+    .mail .val {
+      user-select: all;
+      overflow-wrap: anywhere;
+      min-width: 0;
+    }
+
+    .copy {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font: 500 13px var(--font-mono);
+      padding: 10px 14px;
+      background: transparent;
+      color: var(--fg);
+      border: 1px solid var(--rule);
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    .copy .ms {
+      font-size: 18px;
+    }
+
+    .copy:hover {
+      border-color: var(--accent);
+      color: var(--accent-ink);
+    }
+
+    footer {
+      border-top: 1px solid var(--rule);
+      padding-top: 24px;
+      font: 400 13px var(--font-mono);
+      color: var(--muted);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      .art .flow {
+        animation: none;
+      }
+
+      .tiles li {
+        transition: none;
+      }
+    }
+
+    .resume-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font: 600 13px var(--font-mono);
+      background: var(--accent);
+      color: var(--accent-fg);
+      border: 1px solid var(--accent);
+      padding: 6px 12px;
+      border-radius: 8px;
+      text-decoration: none;
+    }
+
+    .resume-btn .ms {
+      font-size: 18px;
+    }
+
+    .resume-btn:hover {
+      filter: brightness(1.06);
+    }
+
+    @media (max-width: 520px) {
+      .nav-right {
+        gap: 10px;
+      }
+
+      #theme-txt {
+        display: none;
+      }
+    }
+  </style>
+
+  <header class="nav">
+    <div class="wrap">
+      <a class="brand" href="#top"><span class="mark" aria-hidden="true">DJ</span>Divyesh Jain</a>
+      <div class="nav-right">
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#education">Education</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button class="theme-btn" id="theme" type="button" aria-label="Switch between light and dark theme">
+          <span class="ms" id="theme-ico">light_mode</span><span id="theme-txt">Light</span>
+        </button>
+        <!-- NEW: Resume download button -->
+        <a class="resume-btn" href="Divyesh_Jain_Resume.pdf" download="Divyesh_Jain_Resume.pdf">
+          <span class="ms">download</span><span>Resume</span>
+        </a>
+      </div>
+      <!-- REMOVED: the duplicate theme button that was here -->
+    </div>
+  </header>
+
+  <main class="wrap" id="top">
+    <div class="hero">
+      <div>
+        <span class="status"><span class="dot"></span>Software Developer · Maeko Tech Solution LLP</span>
+        <h1>I connect systems and build apps that <em>work offline</em>.</h1>
+        <p class="lede">I'm Divyesh Jain. I build enterprise data pipelines on Azure and Android apps that keep working
+          without internet, then sync when it comes back.</p>
+        <div class="cta">
+          <a class="btn primary" href="#projects"><span class="ms">folder_open</span>See my work</a>
+          <a class="btn ghost" href="#contact"><span class="ms">mail</span>Get in touch</a>
+        </div>
+      </div>
+      <div class="side">
+        <div class="art" role="img"
+          aria-label="Diagram: a SQL database sends data through an Azure Data Factory pipeline to a mobile app">
+          <svg viewBox="0 0 300 150" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <g fill="var(--bg)" stroke="var(--accent-ink)" stroke-width="2" stroke-linejoin="round">
+              <path d="M20 30v80a30 9 0 0 0 60 0V30" />
+              <ellipse cx="50" cy="30" rx="30" ry="9" />
+            </g>
+            <path d="M20 58a30 9 0 0 0 60 0M20 84a30 9 0 0 0 60 0" fill="none" stroke="var(--accent-ink)"
+              stroke-width="2" />
+            <line class="flow" x1="86" y1="70" x2="120" y2="70" stroke="var(--accent-ink)" stroke-width="2"
+              stroke-linecap="round" />
+            <circle cx="150" cy="70" r="27" fill="var(--accent)" />
+            <text x="150" y="75" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="14"
+              font-weight="700" fill="var(--accent-fg)">ADF</text>
+            <line class="flow" x1="180" y1="70" x2="214" y2="70" stroke="var(--accent-ink)" stroke-width="2"
+              stroke-linecap="round" />
+            <rect x="222" y="17" width="56" height="106" rx="10" fill="var(--bg)" stroke="var(--accent-ink)"
+              stroke-width="2" />
+            <rect x="230" y="29" width="40" height="70" rx="4" fill="var(--accent-soft)" />
+            <g fill="var(--accent-ink)">
+              <rect x="236" y="35" width="10" height="10" rx="2" />
+              <rect x="254" y="35" width="10" height="10" rx="2" />
+              <rect x="236" y="53" width="10" height="10" rx="2" />
+              <rect x="254" y="53" width="4" height="4" />
+              <rect x="260" y="59" width="4" height="4" />
+              <rect x="250" y="65" width="4" height="4" />
+              <rect x="238" y="71" width="4" height="4" />
+              <rect x="256" y="74" width="8" height="4" />
+              <rect x="244" y="82" width="12" height="4" />
+            </g>
+            <circle cx="250" cy="111" r="3.5" fill="var(--accent-ink)" />
+            <g font-family="JetBrains Mono, monospace" font-size="10" fill="var(--muted)" text-anchor="middle">
+              <text x="50" y="143">SQL</text><text x="150" y="143">Pipeline</text><text x="250" y="143">Offline
+                app</text>
+            </g>
+          </svg>
+        </div>
+        <aside class="now" aria-label="What I'm working on">
+          <h2><span class="ms">bolt</span>Working on now</h2>
+          <ul>
+            <li><b>Skyworks middleware</b><span>Azure Data Factory pipelines, Logic Apps and APIs</span></li>
+            <li><b>AMS FACE</b><span>Face recognition to mark attendance</span></li>
+          </ul>
+        </aside>
+      </div>
+    </div>
+
+    <section id="about">
+      <div class="sec about">
+        <h2><span class="ms">person</span>About</h2>
+        <div>
+          <p>I like building software that holds up in real conditions, like patchy networks, large data transfers and
+            production tickets.</p>
+          <p>I'm a software developer with an MCA, working as a contractor with Skyworks on their middleware team. My
+            day-to-day is Azure Data Factory, Logic Apps and API Management. Alongside that I lead Android development
+            in Java and Kotlin, and I build web apps with Django and Laravel.</p>
+          <p>I want to keep growing in a team that takes on hard problems, and I'm happy to lead when the work needs it.
+          </p>
+          <dl class="facts">
+            <div><span class="ico"><span class="ms">badge</span></span><span>
+                <dt>Role</dt>
+                <dd>Software Developer</dd>
+              </span></div>
+            <div><span class="ico"><span class="ms">event</span></span><span>
+                <dt>Since</dt>
+                <dd>December 2023</dd>
+              </span></div>
+            <div><span class="ico"><span class="ms">school</span></span><span>
+                <dt>Degree</dt>
+                <dd>MCA, 7.76 CGPA</dd>
+              </span></div>
+            <div><span class="ico"><span class="ms">layers</span></span><span>
+                <dt>Core stack</dt>
+                <dd>Azure, Android, Django</dd>
+              </span></div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="sec">
+        <h2><span class="ms">work</span>Experience</h2>
+        <div>
+          <div class="job-head">
+            <h3>Software Developer, <span class="org">Maeko Tech Solution LLP</span></h3>
+            <span class="when">Dec 2023 – Present</span>
+          </div>
+          <p class="role">Contractor with Skyworks, Middleware Team</p>
+          <div class="hl-grid">
+            <div class="hl"><span class="ico"><span class="ms">account_tree</span></span>
+              <div>
+                <h4>Azure data pipelines</h4>
+                <p>ADF pipelines between Azure SQL and MSSQL/ODS databases.</p>
+              </div>
+            </div>
+            <div class="hl"><span class="ico"><span class="ms">cloud_off</span></span>
+              <div>
+                <h4>Offline-first apps</h4>
+                <p>SQLite storage that syncs on its own once internet returns.</p>
+              </div>
+            </div>
+            <div class="hl"><span class="ico"><span class="ms">qr_code_scanner</span></span>
+              <div>
+                <h4>QR and location</h4>
+                <p>Automated QR scanning, location tracking and attendance logging.</p>
+              </div>
+            </div>
+          </div>
+          <ul class="bullets">
+            <li>Support enterprise integration and data workflows as part of the Skyworks middleware team.</li>
+            <li>Develop and maintain Azure Data Factory pipelines for data transfer, transformation and integration
+              between Azure SQL and MSSQL/ODS databases.</li>
+            <li>Work with the Azure Portal, Logic Apps and API Management (APIM) on enterprise application integration
+              and backend workflows.</li>
+            <li>Lead development of Android apps in Java and Kotlin, including enterprise solutions like the Attendance
+              Management System (AMS).</li>
+            <li>Built an offline-first architecture on SQLite that syncs data automatically once the internet returns.
+            </li>
+            <li>Developed core modules for location tracking, automated QR scanning and attendance logging, with Volley
+              for API calls.</li>
+            <li>Use Python (Django) for backend logic and data structure optimization between mobile apps and servers.
+            </li>
+            <li>Design and maintain responsive web interfaces with HTML5, CSS3 and JavaScript.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="sec">
+        <h2><span class="ms">folder_open</span>Projects</h2>
+        <ul class="projects">
+          <li class="project feature">
+            <div class="lead"><span class="ico"><span class="ms">hub</span></span><span class="kind">Middleware</span>
+            </div>
+            <div>
+              <h3>Skyworks Data Integration Platform</h3>
+              <p>Middleware and Azure developer role. Pipelines and APIs that move enterprise data between systems.</p>
+              <ul class="bullets">
+                <li>ADF pipelines, datasets, linked services and triggers moving data between Azure SQL, MSSQL and ODS
+                  databases.</li>
+                <li>APIM APIs that expose backend services and stored procedures as secure REST endpoints.</li>
+                <li>Data transformation, validation and error handling, plus monitoring and fixing production and QA
+                  issues.</li>
+              </ul>
+              <ul class="tags accent">
+                <li>Azure Data Factory</li>
+                <li>Logic Apps</li>
+                <li>APIM</li>
+                <li>SQL</li>
+              </ul>
+            </div>
+          </li>
+          <li class="project">
+            <div class="lead"><span class="ico"><span class="ms">qr_code_scanner</span></span><span
+                class="kind">Android</span></div>
+            <div>
+              <h3>AMS QR<span class="pill">Built</span></h3>
+              <p>An attendance system with QR scanning and background data sync, working end to end.</p>
+              <ul class="tags">
+                <li>Java</li>
+                <li>Kotlin</li>
+                <li>SQLite</li>
+                <li>Volley</li>
+              </ul>
+            </div>
+          </li>
+          <li class="project">
+            <div class="lead"><span class="ico"><span class="ms">face</span></span><span class="kind">Android</span>
+            </div>
+            <div>
+              <h3>AMS FACE<span class="pill">In progress</span></h3>
+              <p>Adding face recognition so attendance can be marked with a camera.</p>
+              <ul class="tags">
+                <li>Android</li>
+                <li>Face recognition</li>
+              </ul>
+            </div>
+          </li>
+          <li class="project">
+            <div class="lead"><span class="ico"><span class="ms">groups</span></span><span class="kind">Web +
+                Android</span></div>
+            <div>
+              <h3>Kansara Nayati</h3>
+              <p>A community information platform that gives members real-time access to data.</p>
+              <ul class="tags">
+                <li>PHP Laravel</li>
+                <li>MySQL</li>
+                <li>Android</li>
+              </ul>
+            </div>
+          </li>
+          <li class="project">
+            <div class="lead"><span class="ico"><span class="ms">school</span></span><span class="kind">Android</span>
+            </div>
+            <div>
+              <h3>Sakal, School Management System<span class="pill">In progress</span></h3>
+              <p>A teacher app for marking attendance and uploading student information.</p>
+              <ul class="tags">
+                <li>Android</li>
+              </ul>
+            </div>
+          </li>
+          <li class="project">
+            <div class="lead"><span class="ico"><span class="ms">handshake</span></span><span
+                class="kind">Product</span></div>
+            <div>
+              <h3>Saathi<span class="pill">Ongoing</span></h3>
+              <p>Enhancements delivered as per client requirements.</p>
+            </div>
+          </li>
+          <li class="project">
+            <div class="lead"><span class="ico"><span class="ms">image</span></span><span class="kind">Web app</span>
+            </div>
+            <div>
+              <h3>Gurukul Template</h3>
+              <p>A template-based image tool. Users customize posters, certificates and event creatives, add text and
+                images, and export high-quality graphics to download.</p>
+              <ul class="tags">
+                <li>HTML5</li>
+                <li>CSS3</li>
+                <li>JavaScript</li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="sec">
+        <h2><span class="ms">construction</span>Skills</h2>
+        <div class="skills">
+          <div class="group">
+            <h3>Languages</h3>
+            <ul class="tiles">
+              <li><span class="ico"><span class="ms">coffee</span></span>Java</li>
+              <li><span class="ico"><span class="ms">terminal</span></span>Python</li>
+              <li><span class="ico"><span class="ms">code</span></span>PHP</li>
+              <li><span class="ico"><span class="ms">javascript</span></span>JavaScript</li>
+              <li><span class="ico"><span class="ms">database</span></span>SQL</li>
+            </ul>
+          </div>
+          <div class="group">
+            <h3>Cloud and data</h3>
+            <ul class="tiles">
+              <li><span class="ico"><span class="ms">account_tree</span></span>Azure Data Factory (ADF)</li>
+              <li><span class="ico"><span class="ms">cloud</span></span>Azure Portal</li>
+              <li><span class="ico"><span class="ms">hub</span></span>Azure Logic Apps</li>
+              <li><span class="ico"><span class="ms">api</span></span>Azure API Management (APIM)</li>
+            </ul>
+          </div>
+          <div class="group">
+            <h3>Mobile</h3>
+            <ul class="tiles">
+              <li><span class="ico"><span class="ms">smartphone</span></span>Android Studio</li>
+              <li><span class="ico"><span class="ms">storage</span></span>SQLite</li>
+              <li><span class="ico"><span class="ms">swap_horiz</span></span>Volley</li>
+            </ul>
+          </div>
+          <div class="group">
+            <h3>Web</h3>
+            <ul class="tiles">
+              <li><span class="ico"><span class="ms">dns</span></span>Django</li>
+              <li><span class="ico"><span class="ms">web</span></span>Laravel</li>
+              <li><span class="ico"><span class="ms">html</span></span>HTML5</li>
+              <li><span class="ico"><span class="ms">css</span></span>CSS3</li>
+            </ul>
+          </div>
+          <div class="group">
+            <h3>Tools</h3>
+            <ul class="tiles">
+              <li><span class="ico"><span class="ms">draw</span></span>Figma</li>
+              <li><span class="ico"><span class="ms">fork_right</span></span>GitHub</li>
+              <li><span class="ico"><span class="ms">send</span></span>Postman</li>
+              <li><span class="ico"><span class="ms">edit_note</span></span>VS Code</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="education">
+      <div class="sec">
+        <h2><span class="ms">school</span>Education</h2>
+        <div>
+          <ul class="edu">
+            <li><span class="when">2023</span>
+              <div>
+                <h3>MCA, Master of Computer Applications</h3>
+                <p>Mohan Lal Sukhadia University, Udaipur · <span class="score">7.76 CGPA</span></p>
+              </div>
+            </li>
+            <li><span class="when">2021</span>
+              <div>
+                <h3>B.Sc.</h3>
+                <p>Bhupal Nobles' University, Udaipur · <span class="score">66.51%</span></p>
+              </div>
+            </li>
+            <li><span class="when">2018</span>
+              <div>
+                <h3>12th</h3>
+                <p>Mahaveer Public Sr. Sec. School, Rishabhdeo · <span class="score">71.6%</span></p>
+              </div>
+            </li>
+            <li><span class="when">2018</span>
+              <div>
+                <h3>10th</h3>
+                <p>Mahaveer Public Sr. Sec. School, Rishabhdeo · <span class="score">7.8 CGPA</span></p>
+              </div>
+            </li>
+          </ul>
+          <div class="cert">
+            <span class="ico"><span class="ms">workspace_premium</span></span>
+            <div>
+              <h3>Django Full Stack Development</h3>
+              <p>Certification · Udemy</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="sec contact">
+        <h2><span class="ms">mail</span>Contact</h2>
+        <div>
+          <h3>Have a project or role in mind? Let's talk.</h3>
+          <div class="contact-list">
+            <div class="mail-row">
+              <span class="mail"><span class="ico"><span class="ms">mail</span></span><span class="val"
+                  id="mail">divyeshgandhi2000@gmail.com</span></span>
+              <button class="copy" type="button" data-target="mail"><span class="ms">content_copy</span><span
+                  class="lbl">Copy</span></button>
+            </div>
+            <div class="mail-row">
+              <span class="mail"><span class="ico"><span class="ms">call</span></span><span class="val"
+                  id="phone">9784587133</span></span>
+              <button class="copy" type="button" data-target="phone"><span class="ms">content_copy</span><span
+                  class="lbl">Copy</span></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer><span>© <span id="yr">2026</span> Divyesh Jain</span><span>Software Developer</span></footer>
+  </main>
+
+  <script>
+    (function () {
+      var root = document.documentElement;
+      var btn = document.getElementById('theme');
+      var ico = document.getElementById('theme-ico');
+      var txt = document.getElementById('theme-txt');
+      function current() {
+        var t = root.getAttribute('data-theme');
+        if (t) return t;
+        return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+      }
+      function label() {
+        var dark = current() === 'dark';
+        ico.textContent = dark ? 'light_mode' : 'dark_mode';
+        txt.textContent = dark ? 'Light' : 'Dark';
+      }
+      try { var saved = localStorage.getItem('theme'); if (saved) root.setAttribute('data-theme', saved); } catch (e) { }
+      label();
+      btn.addEventListener('click', function () {
+        var next = current() === 'dark' ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        try { localStorage.setItem('theme', next); } catch (e) { }
+        label();
+      });
+
+      Array.prototype.forEach.call(document.querySelectorAll('.copy'), function (copy) {
+        var lbl = copy.querySelector('.lbl');
+        copy.addEventListener('click', function () {
+          var el = document.getElementById(copy.getAttribute('data-target'));
+          function done() { lbl.textContent = 'Copied'; setTimeout(function () { lbl.textContent = 'Copy'; }, 1600); }
+          function fallback() {
+            var r = document.createRange(); r.selectNodeContents(el);
+            var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+            lbl.textContent = 'Press Ctrl+C';
+          }
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(el.textContent).then(done, fallback);
+          } else { fallback(); }
+        });
+      });
+
+      document.getElementById('yr').textContent = new Date().getFullYear();
+    })();
+  </script>
+
+</body>
+
+</html>
